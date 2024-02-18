@@ -74,7 +74,6 @@ class Extra_Checkout_Fields_For_Brazil_Front_End {
 		wp_register_script( 'woocommerce-extra-checkout-fields-for-brazil-front', plugins_url( 'assets/js/frontend/frontend' . $suffix . '.js', plugin_dir_path( __FILE__ ) ), array( 'jquery', 'jquery-mask', 'mailcheck' ), Extra_Checkout_Fields_For_Brazil::VERSION, true );
 
 		$settings = get_option( 'wcbcf_settings' );
-		$autofill = isset( $settings['addresscomplete'] ) ? 'yes' : 'no';
 		wp_localize_script(
 			'woocommerce-extra-checkout-fields-for-brazil-front',
 			'bmwPublicParams',
@@ -83,7 +82,7 @@ class Extra_Checkout_Fields_For_Brazil_Front_End {
 				'required'     => esc_js( __( 'required', 'woocommerce-extra-checkout-fields-for-brazil' ) ),
 				'mailcheck'    => isset( $settings['mailcheck'] ) ? 'yes' : 'no',
 				'maskedinput'  => isset( $settings['maskedinput'] ) ? 'yes' : 'no',
-				'person_type'  => absint( $settings['person_type'] ),
+				'person_type'  => isset( $settings['person_type'] ) ? absint( $settings['person_type'] ) : 0,
 				'only_brazil'  => isset( $settings['only_brazil'] ) ? 'yes' : 'no',
 				/* translators: %hint%: email hint */
 				'suggest_text' => esc_js( __( 'Did you mean: %hint%?', 'woocommerce-extra-checkout-fields-for-brazil' ) ),
